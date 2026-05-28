@@ -41,17 +41,17 @@ class HalamanKatalog(tk.Frame):
         header.pack(fill="x", padx=15, pady=(12, 5))
 
         tk.Label(header, text="📀  Katalog Lagu", bg=WARNA["bg"],
-                 fg=WARNA["aksen"], font=("Consolas", 16, "bold")).pack(side="left")
+                fg=WARNA["aksen"], font=("Consolas", 16, "bold")).pack(side="left")
 
         # Tombol sort
         sort_frame = tk.Frame(header, bg=WARNA["bg"])
         sort_frame.pack(side="right")
         tk.Label(sort_frame, text="Sort:", bg=WARNA["bg"],
-                 fg=WARNA["teks2"], font=("Consolas", 9)).pack(side="left", padx=4)
+                fg=WARNA["teks2"], font=("Consolas", 9)).pack(side="left", padx=4)
         for label, key in [("ID","id"),("Judul","judul"),("Pop.","popularitas"),("Durasi","durasi")]:
             tk.Button(sort_frame, text=label, bg=WARNA["card"], fg=WARNA["teks"],
-                      font=("Consolas", 8), relief="flat", padx=6,
-                      command=lambda k=key: self._toggle_sort(k)).pack(side="left", padx=2)
+                    font=("Consolas", 8), relief="flat", padx=6,
+                    command=lambda k=key: self._toggle_sort(k)).pack(side="left", padx=2)
 
         # ── Tabel ──
         tabel_frame = tk.Frame(self, bg=WARNA["bg"])
@@ -59,10 +59,10 @@ class HalamanKatalog(tk.Frame):
 
         cols = ("ID", "Judul", "Artis", "Genre", "Mood", "Durasi", "Pop.")
         self.tabel = ttk.Treeview(tabel_frame, columns=cols, show="headings",
-                                   height=13, selectmode="browse")
+            height=13, selectmode="browse")
 
         lebar = {"ID": 40, "Judul": 180, "Artis": 130, "Genre": 70,
-                 "Mood": 80, "Durasi": 60, "Pop.": 50}
+                "Mood": 80, "Durasi": 60, "Pop.": 50}
         for col in cols:
             self.tabel.heading(col, text=col)
             self.tabel.column(col, width=lebar[col], anchor="center")
@@ -76,7 +76,7 @@ class HalamanKatalog(tk.Frame):
         style.map("Treeview", background=[("selected", WARNA["card"])])
 
         scrollbar = ttk.Scrollbar(tabel_frame, orient="vertical",
-                                  command=self.tabel.yview)
+                                command=self.tabel.yview)
         self.tabel.configure(yscrollcommand=scrollbar.set)
 
         self.tabel.pack(side="left", fill="both", expand=True)
@@ -99,28 +99,28 @@ class HalamanKatalog(tk.Frame):
 
         for label, key in fields_kiri:
             tk.Label(kiri, text=label, bg=WARNA["panel"], fg=WARNA["teks2"],
-                     font=("Consolas", 9)).pack(anchor="w")
+                    font=("Consolas", 9)).pack(anchor="w")
             e = tk.Entry(kiri, bg=WARNA["card"], fg=WARNA["teks"], insertbackground="white",
-                         font=("Consolas", 9), relief="flat", width=28)
+                        font=("Consolas", 9), relief="flat", width=28)
             e.pack(anchor="w", pady=(0, 4))
             self.entry[key] = e
 
         for label, key in fields_kanan:
             tk.Label(kanan, text=label, bg=WARNA["panel"], fg=WARNA["teks2"],
-                     font=("Consolas", 9)).pack(anchor="w")
+                    font=("Consolas", 9)).pack(anchor="w")
             if key == "genre":
                 cb = ttk.Combobox(kanan, values=GENRE_LIST, state="readonly",
-                                  font=("Consolas", 9), width=26)
+                                font=("Consolas", 9), width=26)
                 cb.pack(anchor="w", pady=(0, 4))
                 self.entry[key] = cb
             elif key == "mood":
                 cb = ttk.Combobox(kanan, values=MOOD_LIST, state="readonly",
-                                  font=("Consolas", 9), width=26)
+                                font=("Consolas", 9), width=26)
                 cb.pack(anchor="w", pady=(0, 4))
                 self.entry[key] = cb
             else:
                 e = tk.Entry(kanan, bg=WARNA["card"], fg=WARNA["teks"], insertbackground="white",
-                             font=("Consolas", 9), relief="flat", width=28)
+                            font=("Consolas", 9), relief="flat", width=28)
                 e.pack(anchor="w", pady=(0, 4))
                 self.entry[key] = e
 
@@ -135,8 +135,8 @@ class HalamanKatalog(tk.Frame):
             ("🔄 Reset",   self._reset_form, WARNA["teks2"]),
         ]:
             tk.Button(btn_frame, text=teks, bg=warna, fg="#111",
-                      font=("Consolas", 9, "bold"), relief="flat", width=12,
-                      command=fn).pack(pady=3)
+                    font=("Consolas", 9, "bold"), relief="flat", width=12,
+                    command=fn).pack(pady=3)
 
         self._id_dipilih = None
 
@@ -153,8 +153,8 @@ class HalamanKatalog(tk.Frame):
         self.tabel.delete(*self.tabel.get_children())
         for l in semua:
             self.tabel.insert("", "end", iid=str(l.id),
-                              values=(l.id, l.judul, l.artis,
-                                      l.genre, l.mood, l.durasi_format(), l.popularitas))
+                            values=(l.id, l.judul, l.artis,
+                                    l.genre, l.mood, l.durasi_format(), l.popularitas))
 
     def _toggle_sort(self, key: str):
         if self._sort_key == key:
@@ -201,7 +201,7 @@ class HalamanKatalog(tk.Frame):
                 raise ValueError
         except ValueError:
             messagebox.showwarning("Input salah",
-                                   "Durasi & Popularitas harus angka (Pop: 1-100)!")
+                                "Durasi & Popularitas harus angka (Pop: 1-100)!")
             return None
 
         return {"judul": judul, "artis": artis, "genre": genre,
@@ -228,7 +228,7 @@ class HalamanKatalog(tk.Frame):
             return
         lagu_lama = self.app.katalog.search(self._id_dipilih)
         lagu_baru = Lagu(self._id_dipilih, data["judul"], data["artis"],
-                         data["genre"], data["mood"], data["durasi"], data["pop"])
+                        data["genre"], data["mood"], data["durasi"], data["pop"])
         self.app.katalog.delete(self._id_dipilih)
         self.app.katalog.insert(lagu_baru)
         self._reset_form()
