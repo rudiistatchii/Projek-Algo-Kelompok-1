@@ -25,7 +25,7 @@ class App(tk.Tk):
     def __init__(self):
         super().__init__()
 
-        self.title("🎵 MelodRec — Sistem Rekomendasi Musik")
+        self.title("🎵 Ahayy Melody — Sistem Rekomendasi Musik")
         self.geometry("900x620")
         self.resizable(False, False)
         self.configure(bg="#1a1a2e")
@@ -48,9 +48,7 @@ class App(tk.Tk):
         style.configure("TNotebook",          background="#1a1a2e", borderwidth=0)
         style.configure("TNotebook.Tab",      background="#16213e", foreground="#a0a0c0",
                         padding=[20, 8], font=("Consolas", 10, "bold"))
-        style.map("TNotebook.Tab",
-                  background=[("selected", "#0f3460")],
-                  foreground=[("selected", "#e94560")])
+        style.map("TNotebook.Tab", background=[("selected", "#0f3460")],foreground=[("selected", "#e94560")])
 
         self.notebook = ttk.Notebook(self)
         self.notebook.pack(fill="both", expand=True, padx=10, pady=10)

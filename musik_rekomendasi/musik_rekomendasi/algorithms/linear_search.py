@@ -4,8 +4,7 @@
 from models.lagu import Lagu
 
 
-def linear_search(katalog: list, genre: str = None,
-                  mood: str = None) -> list:
+def linear_search(katalog: list, genre: str = None, mood: str = None) -> list:
     """
     Mencari lagu yang cocok dengan kriteria genre dan/atau mood.
     Menggunakan Linear Search — scan semua elemen satu per satu.
