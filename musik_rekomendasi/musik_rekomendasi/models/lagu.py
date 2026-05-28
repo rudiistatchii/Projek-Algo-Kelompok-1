@@ -16,7 +16,7 @@ class Lagu:
     """
 
     def __init__(self, id: int, judul: str, artis: str,
-                 genre: str, mood: str, durasi: int, popularitas: int):
+                genre: str, mood: str, durasi: int, popularitas: int):
         self.id          = id
         self.judul       = judul
         self.artis       = artis
