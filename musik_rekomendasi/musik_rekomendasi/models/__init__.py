@@ -1,0 +1,1 @@
+from .lagu import Lagu
