@@ -22,24 +22,17 @@ class HalamanPlaylist(tk.Frame):
 
     def _bangun_ui(self):
         # ── Header ──
-        tk.Label(self, text="🎵  Playlist & Player", bg=WARNA["bg"],
-                 fg=WARNA["aksen"], font=("Consolas", 16, "bold")).pack(
-                 anchor="w", padx=15, pady=(12, 5))
+        tk.Label(self, text="🎵  Playlist & Player", bg=WARNA["bg"], fg=WARNA["aksen"], font=("Consolas", 16, "bold")).pack( anchor="w", padx=15, pady=(12, 5))
 
         # ── Player card ──
         player = tk.Frame(self, bg=WARNA["card"], padx=20, pady=12)
         player.pack(fill="x", padx=15, pady=5)
 
-        tk.Label(player, text="▶  Sedang Diputar", bg=WARNA["card"],
-                 fg=WARNA["teks2"], font=("Consolas", 9)).pack(anchor="w")
-        self.label_now = tk.Label(player, text="— Belum ada lagu —",
-                                  bg=WARNA["card"], fg=WARNA["hijau"],
-                                  font=("Consolas", 13, "bold"), wraplength=700)
+        tk.Label(player, text="▶  Sedang Diputar", bg=WARNA["card"], fg=WARNA["teks2"], font=("Consolas", 9)).pack(anchor="w")
+        self.label_now = tk.Label(player, text="— Belum ada lagu —", bg=WARNA["card"], fg=WARNA["hijau"], font=("Consolas", 13, "bold"), wraplength=700)
         self.label_now.pack(anchor="w", pady=3)
 
-        self.label_detail = tk.Label(player, text="",
-                                     bg=WARNA["card"], fg=WARNA["teks2"],
-                                     font=("Consolas", 9))
+        self.label_detail = tk.Label(player, text="", bg=WARNA["card"], fg=WARNA["teks2"], font=("Consolas", 9))
         self.label_detail.pack(anchor="w")
 
         # Tombol prev/next/antrian
@@ -52,9 +45,7 @@ class HalamanPlaylist(tk.Frame):
             ("⏭ Next",      self._next,            WARNA["panel"]),
             ("⏭+ Dari Antrian", self._play_antrian, WARNA["kuning"]),
         ]:
-            tk.Button(ctrl, text=teks, bg=warna, fg=WARNA["teks"],
-                      font=("Consolas", 9, "bold"), relief="flat", padx=10, pady=5,
-                      command=fn).pack(side="left", padx=3)
+            tk.Button(ctrl, text=teks, bg=warna, fg=WARNA["teks"], font=("Consolas", 9, "bold"), relief="flat", padx=10, pady=5, command=fn).pack(side="left", padx=3)
 
         # ── 3 kolom: Playlist / Riwayat / Antrian ──
         kolom_frame = tk.Frame(self, bg=WARNA["bg"])
@@ -71,49 +62,33 @@ class HalamanPlaylist(tk.Frame):
         frame = tk.Frame(parent, bg=WARNA["panel"], padx=8, pady=8)
         frame.pack(side="left", fill="both", expand=True, padx=(0, 5))
 
-        tk.Label(frame, text="📋 Playlist", bg=WARNA["panel"],
-                 fg=WARNA["aksen"], font=("Consolas", 10, "bold")).pack(anchor="w")
+        tk.Label(frame, text="📋 Playlist", bg=WARNA["panel"], fg=WARNA["aksen"], font=("Consolas", 10, "bold")).pack(anchor="w")
 
-        self.list_playlist = tk.Listbox(frame, bg=WARNA["card"], fg=WARNA["teks"],
-                                         selectbackground=WARNA["aksen"],
-                                         font=("Consolas", 8), relief="flat",
-                                         activestyle="none", height=10)
+        self.list_playlist = tk.Listbox(frame, bg=WARNA["card"], fg=WARNA["teks"], selectbackground=WARNA["aksen"], font=("Consolas", 8), relief="flat", activestyle="none", height=10)
         self.list_playlist.pack(fill="both", expand=True, pady=5)
 
         btn_f = tk.Frame(frame, bg=WARNA["panel"])
         btn_f.pack(fill="x")
-        tk.Button(btn_f, text="▶ Putar ini", bg=WARNA["hijau"], fg="#111",
-                  font=("Consolas", 8, "bold"), relief="flat",
-                  command=self._putar_pilihan).pack(side="left", padx=(0, 4))
-        tk.Button(btn_f, text="➕ ke Antrian", bg=WARNA["card"], fg=WARNA["teks"],
-                  font=("Consolas", 8), relief="flat",
-                  command=self._tambah_antrian).pack(side="left", padx=(0, 4))
-        tk.Button(btn_f, text="🗑", bg=WARNA["aksen"], fg="white",
-                  font=("Consolas", 8), relief="flat",
-                  command=self._hapus_dari_playlist).pack(side="left")
+        tk.Button(btn_f, text="▶ Putar ini", bg=WARNA["hijau"], fg="#111", font=("Consolas", 8, "bold"), relief="flat", command=self._putar_pilihan).pack(side="left", padx=(0, 4))
+        tk.Button(btn_f, text="➕ ke Antrian", bg=WARNA["card"], fg=WARNA["teks"], font=("Consolas", 8), relief="flat", command=self._tambah_antrian).pack(side="left", padx=(0, 4))
+        tk.Button(btn_f, text="🗑", bg=WARNA["aksen"], fg="white", font=("Consolas", 8), relief="flat", command=self._hapus_dari_playlist).pack(side="left")
 
     def _kolom_riwayat(self, parent):
         frame = tk.Frame(parent, bg=WARNA["panel"], padx=8, pady=8)
         frame.pack(side="left", fill="both", expand=True, padx=(0, 5))
 
-        tk.Label(frame, text="🕐 Riwayat", bg=WARNA["panel"],
-                 fg=WARNA["kuning"], font=("Consolas", 10, "bold")).pack(anchor="w")
+        tk.Label(frame, text="🕐 Riwayat", bg=WARNA["panel"], fg=WARNA["kuning"], font=("Consolas", 10, "bold")).pack(anchor="w")
 
-        self.list_riwayat = tk.Listbox(frame, bg=WARNA["card"], fg=WARNA["teks"],
-                                        font=("Consolas", 8), relief="flat",
-                                        activestyle="none", height=10,
-                                        selectbackground=WARNA["kuning"])
+        self.list_riwayat = tk.Listbox(frame, bg=WARNA["card"], fg=WARNA["teks"], font=("Consolas", 8), relief="flat", activestyle="none", height=10, selectbackground=WARNA["kuning"])
         self.list_riwayat.pack(fill="both", expand=True, pady=5)
 
-        tk.Label(frame, text="(Stack — terbaru di atas)", bg=WARNA["panel"],
-                 fg=WARNA["teks2"], font=("Consolas", 7)).pack(anchor="w")
+        tk.Label(frame, text="(Stack — terbaru di atas)", bg=WARNA["panel"], fg=WARNA["teks2"], font=("Consolas", 7)).pack(anchor="w")
 
     def _kolom_antrian(self, parent):
         frame = tk.Frame(parent, bg=WARNA["panel"], padx=8, pady=8)
         frame.pack(side="left", fill="both", expand=True)
 
-        tk.Label(frame, text="⏭ Antrian", bg=WARNA["panel"],
-                 fg=WARNA["hijau"], font=("Consolas", 10, "bold")).pack(anchor="w")
+        tk.Label(frame, text="⏭ Antrian", bg=WARNA["panel"], fg=WARNA["hijau"], font=("Consolas", 10, "bold")).pack(anchor="w")
 
         self.list_antrian = tk.Listbox(frame, bg=WARNA["card"], fg=WARNA["teks"],
                                         font=("Consolas", 8), relief="flat",
@@ -123,11 +98,8 @@ class HalamanPlaylist(tk.Frame):
 
         btn_f = tk.Frame(frame, bg=WARNA["panel"])
         btn_f.pack(fill="x")
-        tk.Button(btn_f, text="🗑 Hapus", bg=WARNA["aksen"], fg="white",
-                  font=("Consolas", 8), relief="flat",
-                  command=self._hapus_dari_antrian).pack(side="left")
-        tk.Label(frame, text="(Queue — FIFO)", bg=WARNA["panel"],
-                 fg=WARNA["teks2"], font=("Consolas", 7)).pack(anchor="w")
+        tk.Button(btn_f, text="🗑 Hapus", bg=WARNA["aksen"], fg="white", font=("Consolas", 8), relief="flat", command=self._hapus_dari_antrian).pack(side="left")
+        tk.Label(frame, text="(Queue — FIFO)", bg=WARNA["panel"], fg=WARNA["teks2"], font=("Consolas", 7)).pack(anchor="w")
 
     # ── PLAYER CONTROLS ──────────────────────────────────────────────────────
 
